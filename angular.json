@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "deyfus": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "deyfus"
+    }
+  },
+  "defaultProject": "deyfus",
+  "cli": {
+    "analytics": "80e5d814-45a7-4bec-a036-d27949f55a0d"
+  }
 }
