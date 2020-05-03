@@ -1,1 +1,111 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body::-webkit-scrollbar {
+    width: 7px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #033d75;
+    border-radius: 5px;
+}
+
+.informacion-info {
+    border: 0px solid #000000;
+    border-radius: 16px 16px 16px 16px;
+    -moz-border-radius: 16px 16px 16px 16px;
+    -webkit-border-radius: 16px 16px 16px 16px;
+    box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.5);
+    border-left: 5px solid #189ce2;
+}
+
+.informacion-info .title-info a {
+    color: #189ce2;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.informacion-info .title-info a:hover {
+    color: #1283bf;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.informacion-info .value-info {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.informacion-danger {
+    border: 0px solid #000000;
+    border-radius: 16px 16px 16px 16px;
+    -moz-border-radius: 16px 16px 16px 16px;
+    -webkit-border-radius: 16px 16px 16px 16px;
+    box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.5);
+    border-left: 5px solid #dd3d31;
+}
+
+.informacion-danger .title-info a {
+    color: #dd3d31;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.informacion-danger .title-info a:hover {
+    color: #c5352a;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.informacion-danger .value-info {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.container-form {
+    border: 0px solid #000000;
+    border-radius: 16px 16px 16px 16px;
+    -moz-border-radius: 16px 16px 16px 16px;
+    -webkit-border-radius: 16px 16px 16px 16px;
+    box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.5);
+}
+
+.contenedor-imagen-modelo {
+    width: 300px;
+    height: 150px;
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.imagen-modelo {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.table-responsive::-webkit-scrollbar {
+    height: 7px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #033d75;
+    border-radius: 5px;
+}
+
+.img-slide {
+    height: 600px;
+}
+
+@media (max-width: 768px) {
+    .img-slide {
+        height: 300px;
+    }
+}

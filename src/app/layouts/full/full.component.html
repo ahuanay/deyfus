@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="#"><img src="/assets/imagenes/logo.jpg" class="img-logo" alt="Deyfus"></a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"><i
+            class="fas fa-bars"></i></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link" href="javascript:;" routerLink="/dashboard/home">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/modelos.html">Modelos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/productos-ingreso.html">Productos Ingreso</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/productos.html">Productos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/productos-egreso.html">Productos Egreso</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item" style="margin: 2px;">
+                <button type="button" class="btn btn-dark m-1" id="modo_oscuro">
+                    <i class="fas fa-adjust"></i>
+                </button>
+                <button type="button" class="btn btn-light m-1" id="modo_normal" style="display: none;">
+                    <i class="fas fa-adjust"></i>
+                </button>
+                <a href="alertas.html" class="btn btn-danger m-1">
+                    <i class="fas fa-bell"></i> <span class="badge badge-light">0</span>
+                </a>
+            </li>
+            <li class="nav-item" style="margin: 6px;">
+                <select class="form-control" id="tienda" name="tienda">
+                    <option value="1">Cajamarca</option>
+                    <option value="2">Open Plaza</option>
+                </select>
+            </li>
+            <li class="nav-item dropdown" style="margin: 2px;">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <img src="{{listUsuario.avatar_url}}" class="img-perfil">
+                    {{listUsuario.nombres}} {{listUsuario.apellido_paterno}} {{listUsuario.apellido_materno}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" href="">Mi Perfil</a>
+                    <a class="dropdown-item" href="">Configuración</a>
+                    <hr>
+                    <a class="dropdown-item" (click)="cerrarSesion()" style="cursor: pointer;">Cerrar Sesión</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<router-outlet></router-outlet>
+
+<footer class="navbar-dark bg-dark pt-5">
+    <div class="container-fluid text-center text-md-left">
+        <div class="row">
+            <div class="col-md-6 mt-md-0 mt-3">
+                <h5 class="text-uppercase">DEYFUS</h5>
+                <p style="color: rgba(255,255,255,0.8);">El cuero que va contigo. Disfruta la moda en tus pies</p>
+
+            </div>
+            <hr class="clearfix w-100 d-md-none pb-3">
+            <div class="col-md-3 mb-md-0 mb-3">
+                <h5 class="text-uppercase">REDES SOCIALES</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="https://www.facebook.com/deyfus/" class="link"><i class="fa fa-facebook"
+                                aria-hidden="true"></i> Siganos en Facebook</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright text-center py-3" style="color: rgb(255,255,255);">&copy; 2020 Copyright: GINA
+        THALIA DE LA CRUZ HUAMANI</div>
+</footer>
