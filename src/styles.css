@@ -109,3 +109,8 @@ body::-webkit-scrollbar-thumb {
         height: 300px;
     }
 }
+
+.is-invalid-feedback {
+    font-size: 80%;
+    color: #C71C22;
+}

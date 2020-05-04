@@ -11,7 +11,26 @@ export class WebService {
 
   constructor(private http: HttpClient) { }
 
-  postLogin(login): Observable<any> {
+  // Login
+  postLogin(login: any): Observable<any> {
     return this.http.post(this.API_Server + 'usuarios/login/', login);
   }
+
+  // Categorias
+  getAllCategorias(): Observable<any> {
+    return this.http.get(this.API_Server + 'categorias/');
+  }
+  getByIdCategoria(id: any): Observable<any> {
+    return this.http.get(this.API_Server + 'categorias/' + id);
+  }
+  createCategoria(categoria: any): Observable<any> {
+    return this.http.post(this.API_Server + 'categorias/', categoria);
+  }
+  putCategoria(id: any, categoria: any): Observable<any> {
+    return this.http.put(this.API_Server + 'categorias/' + id, categoria)
+  }
+  deleteCategoria(id: any): Observable<any> {
+    return this.http.delete(this.API_Server + 'categorias/' + id);
+  }
+
 }

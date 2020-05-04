@@ -12,14 +12,26 @@
             <li class="nav-item">
                 <a class="nav-link" href="/modelos.html">Modelos</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/productos-ingreso.html">Productos Ingreso</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="ddProducto" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"> Producto
+                </a>
+                <div class="dropdown-menu" aria-labelledby="ddProducto">
+                    <a class="dropdown-item" href="/productos.html">Productos</a>
+                    <a class="dropdown-item" href="/productos-ingreso.html">Productos Ingreso</a>
+                    <a class="dropdown-item" href="/productos-egreso.html">Productos Egreso</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/productos.html">Productos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/productos-egreso.html">Productos Egreso</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="ddOtros" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"> Otros
+                </a>
+                <div class="dropdown-menu" aria-labelledby="ddOtros">
+                    <a class="dropdown-item" href="javascript:;" routerLink="/views/categorias">Categorias</a>
+                    <a class="dropdown-item" href="/productos-ingreso.html">Colores</a>
+                    <a class="dropdown-item" href="/productos-egreso.html">Tiendas</a>
+                    <a class="dropdown-item" href="/productos-egreso.html">Tipo Cuero</a>
+                </div>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -41,14 +53,13 @@
                 </select>
             </li>
             <li class="nav-item dropdown" style="margin: 2px;">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" href="#" id="ddUsuario" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <img src="{{listUsuario.avatar_url}}" class="img-perfil">
                     {{listUsuario.nombres}} {{listUsuario.apellido_paterno}} {{listUsuario.apellido_materno}}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                <div class="dropdown-menu" aria-labelledby="ddUsuario">
                     <a class="dropdown-item" href="">Mi Perfil</a>
-                    <a class="dropdown-item" href="">Configuración</a>
                     <hr>
                     <a class="dropdown-item" (click)="cerrarSesion()" style="cursor: pointer;">Cerrar Sesión</a>
                 </div>

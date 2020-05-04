@@ -1,0 +1,44 @@
+<button type="button" class="btn btn-md btn-outline-primary btn-block" (click)="openModal(content)" [hidden]="hiddenCreateButton">Crear</button>
+<button type="button" class="btn btn-info btn-sm m-1" (click)="openModal(content)" [hidden]="hiddenUpdateButton">Editar</button>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Categoría</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formCategoria" (ngSubmit)="saveSubmitForm()">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Nombre</label>
+                    <input
+                        type="text"
+                        formControlName="nombre"
+                        class="form-control text-uppercase"
+                        onclick="this.select()"
+                        [ngClass]="{ 'is-invalid': validatorFormStatus && validatorForm.nombre.errors }">
+                    <div *ngIf="validatorFormStatus && validatorForm.nombre.errors" class="invalid-feedback">
+                        <div *ngIf="validatorForm.nombre.errors.required">* Obligatorio</div>
+                    </div>
+                </div>
+                <div class="col-md-12 form-group">
+                    <label>Tallas</label>
+                    <tag-input
+                        formControlName="tallas"
+                        [secondaryPlaceholder]="'Ingrese y presione enter'"
+                        [placeholder]="'Nuevo'"
+                        theme='bootstrap'
+                        >
+                    </tag-input>
+                    <div *ngIf="validatorFormStatus && validatorForm.tallas.errors" class="is-invalid-feedback">
+                        <div *ngIf="validatorForm.tallas.errors.required">* Obligatorio</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer row">
+                <button type="submit" class="btn btn-info">Guardar</button>
+                <button type="button" class="btn btn-outline-danger" (click)="d('Cross click')">Salir</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
