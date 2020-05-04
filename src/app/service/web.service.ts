@@ -49,4 +49,38 @@ export class WebService {
   deleteColor(id: any): Observable<any> {
     return this.http.delete(this.API_Server + 'colores/' + id);
   }
+
+  // Tiendas
+  getAllTienda(): Observable<any> {
+    return this.http.get(this.API_Server + 'tiendas/');
+  }
+  getByIdTienda(id: any): Observable<any> {
+    return this.http.get(this.API_Server + 'tiendas/' + id);
+  }
+  createTienda(tienda: any): Observable<any> {
+    return this.http.post(this.API_Server + 'tiendas/', tienda);
+  }
+  putTienda(id: any, tienda: any): Observable<any> {
+    return this.http.put(this.API_Server + 'tiendas/' + id, tienda)
+  }
+  deleteTienda(id: any): Observable<any> {
+    return this.http.delete(this.API_Server + 'tiendas/' + id);
+  }
+
+  // Tipo cuero
+  getAllTipoCuero(): Observable<any> {
+    return this.http.get(this.API_Server + 'tipos_cuero/');
+  }
+  getByIdTipoCuero(id: any): Observable<any> {
+    return this.http.get(this.API_Server + 'tipos_cuero/' + id);
+  }
+  createTipoCuero(tipoCuero: any): Observable<any> {
+    return this.http.post(this.API_Server + 'tipos_cuero/', tipoCuero);
+  }
+  putTipoCuero(id: any, tipoCuero: any): Observable<any> {
+    return this.http.put(this.API_Server + 'tipos_cuero/' + id, tipoCuero)
+  }
+  deleteTipoCuero(id: any): Observable<any> {
+    return this.http.delete(this.API_Server + 'tipos_cuero/' + id);
+  }
 }

@@ -3,11 +3,11 @@ import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WebService } from 'src/app/service/web.service';
 
 @Component({
-  selector: 'app-delete-categoria',
-  templateUrl: './delete-categoria.component.html',
-  styleUrls: ['./delete-categoria.component.css']
+  selector: 'app-delete-tipo-cuero',
+  templateUrl: './delete-tipo-cuero.component.html',
+  styleUrls: ['./delete-tipo-cuero.component.css']
 })
-export class DeleteCategoriaComponent implements OnInit {
+export class DeleteTipoCueroComponent implements OnInit {
 
   @Input() id: any;
   @Output() reload = new EventEmitter();
@@ -19,8 +19,8 @@ export class DeleteCategoriaComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteCategoria() {
-    this.webService.deleteCategoria(this.id).subscribe(
+  deleteTipoCuero() {
+    this.webService.deleteTipoCuero(this.id).subscribe(
       response => {
         this.reload.emit();
         this.modalReference.close();

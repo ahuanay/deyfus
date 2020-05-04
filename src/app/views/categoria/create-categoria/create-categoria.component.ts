@@ -37,25 +37,27 @@ export class CreateCategoriaComponent implements OnInit {
   }
 
   inicializator() {
-    this.inicializatorProductoForm();
+    this.inicializatorCategoriaForm();
     this.validatorFormStatus = false;
     if (this.id !== '') {
-      this.inicializatorByIdProducto();
+      this.inicializatorByIdCategoria();
     }
   }
 
-  inicializatorProductoForm() {
+  inicializatorCategoriaForm() {
     this.formCategoria = this.formBuilder.group({
       nombre: ['', Validators.required],
       tallas: [[], Validators.required],
+      estado: [true, Validators.required],
     });
   }
 
-  inicializatorByIdProducto() {
+  inicializatorByIdCategoria() {
     this.webService.getByIdCategoria(this.id).subscribe(
       response => {
         this.formCategoria.get('nombre').setValue(response.nombre);
-        this.formCategoria.get('tallas').setValue(this.convertArrayIntToChipsArray(response.tallas));        
+        this.formCategoria.get('tallas').setValue(this.convertArrayIntToChipsArray(response.tallas));    
+        this.formCategoria.get('estado').setValue(response.estado);
       },
       error => {
         console.log(error);
@@ -89,12 +91,7 @@ export class CreateCategoriaComponent implements OnInit {
   }
 
   updateForm() {
-    const categoria = {
-      nombre: this.formCategoria.value.nombre.toUpperCase(),
-      tallas: this.convertChipsArrayToArrayInt(this.formCategoria.value.tallas),
-    };
-
-    this.webService.putCategoria(this.id, categoria).subscribe(
+    this.webService.putCategoria(this.id, this.validatorRestructJson()).subscribe(
       response => {
         this.reload.emit();
         this.modalReference.close();
@@ -109,7 +106,7 @@ export class CreateCategoriaComponent implements OnInit {
     var data = {
       nombre: this.formCategoria.value.nombre.toUpperCase(),
       tallas: this.convertChipsArrayToArrayInt(this.formCategoria.value.tallas),
-      estado: true
+      estado: this.formCategoria.value.estado
     }
     return data;
   }

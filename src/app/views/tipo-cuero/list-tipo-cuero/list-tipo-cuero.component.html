@@ -1,13 +1,13 @@
 <div class="container">
-    <h3 class="text-center m-5">Lista Categorias</h3>
+    <h3 class="text-center m-5">Lista tipos de cuero</h3>
     <div class="row">
         <div class="form-group col-md-12">
             <div class="row">
                 <div class="col-md-10">
-                    <input type="search" class="form-control" name="filterCategoria" [(ngModel)]="filterCategoria"  placeholder="buscar categoria ...">
+                    <input type="search" class="form-control" name="filterTipoCuero" [(ngModel)]="filterTipoCuero"  placeholder="buscar tipo-cuero ...">
                 </div>
                 <div class="col-md-2">
-                    <app-create-categoria [typeButton]="'create'" [id]="''" (reload)="reload()"></app-create-categoria>
+                    <app-create-tipo-cuero [typeButton]="'create'" [id]="''" (reload)="reload()"></app-create-tipo-cuero>
                 </div>
             </div>
         </div>
@@ -18,16 +18,14 @@
                         <tr class="text-center">
                             <th scope="col" style="min-width: 20px;">#</th>
                             <th scope="col" style="min-width: 50px;">Nombre</th>
-                            <th scope="col" style="min-width: 200px;">Tallas</th>
                             <th scope="col" style="min-width: 50px;">Estado</th>
                             <th scope="col" style="min-width: 100px;"></th>
                         </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of listCategorias | filter: filterCategoria; let i = index" >
+                            <tr *ngFor="let item of listTipoCuero | filter: filterTipoCuero; let i = index" >
                                 <th scope="row" class="vertical-align text-center">{{ i + 1 }}</th>
                                 <td class="vertical-align">{{ item.nombre }}</td>
-                                <td class="vertical-align">{{ item.tallas }}</td>
                                 <ng-container *ngIf="item.estado; else elseActivo">
                                     <td class="vertical-align">ACTIVO</td>
                                 </ng-container>
@@ -35,8 +33,8 @@
                                     <td class="vertical-align">INACTIVO</td>
                                 </ng-template>
                                 <td class="vertical-align text-center">
-                                    <app-create-categoria [typeButton]="'update'" [id]="item._id" (reload)="reload()"></app-create-categoria>
-                                    <app-delete-categoria [id]="item._id" (reload)="reload()"></app-delete-categoria>
+                                    <app-create-tipo-cuero [typeButton]="'update'" [id]="item._id" (reload)="reload()"></app-create-tipo-cuero>
+                                    <app-delete-tipo-cuero [id]="item._id" (reload)="reload()"></app-delete-tipo-cuero>
                                 </td>
                             </tr>
                         </tbody>

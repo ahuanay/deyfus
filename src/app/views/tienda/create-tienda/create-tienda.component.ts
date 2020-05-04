@@ -4,22 +4,22 @@ import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WebService } from 'src/app/service/web.service';
 
 @Component({
-  selector: 'app-create-color',
-  templateUrl: './create-color.component.html',
-  styleUrls: ['./create-color.component.css']
+  selector: 'app-create-tienda',
+  templateUrl: './create-tienda.component.html',
+  styleUrls: ['./create-tienda.component.css']
 })
-export class CreateColorComponent implements OnInit {
+export class CreateTiendaComponent implements OnInit {
 
   @Input() id: any;
   @Input() typeButton: any;
   @Output() reload = new EventEmitter();
 
-  public formColor: FormGroup;
+  public formTienda: FormGroup;
   public hiddenCreateButton: boolean;
   public hiddenUpdateButton: boolean;
   public validatorFormStatus: boolean;
   public modalReference: NgbModalRef;
-  get validatorForm() { return this.formColor.controls; }
+  get validatorForm() { return this.formTienda.controls; }
 
   constructor(private webService: WebService, private formBuilder: FormBuilder, private modalService: NgbModal) { }
 
@@ -37,25 +37,27 @@ export class CreateColorComponent implements OnInit {
   }
 
   inicializator() {
-    this.inicializatorColorForm();
+    this.inicializatorTiendaForm();
     this.validatorFormStatus = false;
     if (this.id !== '') {
-      this.inicializatorByIdColor();
+      this.inicializatorByIdTienda();
     }
   }
 
-  inicializatorColorForm() {
-    this.formColor = this.formBuilder.group({
+  inicializatorTiendaForm() {
+    this.formTienda = this.formBuilder.group({
       nombre: ['', Validators.required],
+      direccion: ['', Validators.required],
       estado: [true, Validators.required],
     });
   }
 
-  inicializatorByIdColor() {
-    this.webService.getByIdColor(this.id).subscribe(
+  inicializatorByIdTienda() {
+    this.webService.getByIdTienda(this.id).subscribe(
       response => {
-        this.formColor.get('nombre').setValue(response.nombre);
-        this.formColor.get('estado').setValue(response.estado);      
+        this.formTienda.get('nombre').setValue(response.nombre);
+        this.formTienda.get('direccion').setValue(response.direccion);
+        this.formTienda.get('estado').setValue(response.estado);
       },
       error => {
         console.log(error);
@@ -65,7 +67,7 @@ export class CreateColorComponent implements OnInit {
 
   saveSubmitForm() {
     this.validatorFormStatus = true;
-    if (this.formColor.invalid) {
+    if (this.formTienda.invalid) {
         return;
     }
 
@@ -77,7 +79,7 @@ export class CreateColorComponent implements OnInit {
   }
 
   saveForm() {
-    this.webService.createColor(this.validatorRestructJson()).subscribe(
+    this.webService.createTienda(this.validatorRestructJson()).subscribe(
       response => {
         this.reload.emit();
         this.modalReference.close();
@@ -89,7 +91,7 @@ export class CreateColorComponent implements OnInit {
   }
 
   updateForm() {
-    this.webService.putColor(this.id, this.validatorRestructJson()).subscribe(
+    this.webService.putTienda(this.id, this.validatorRestructJson()).subscribe(
       response => {
         this.reload.emit();
         this.modalReference.close();
@@ -102,8 +104,9 @@ export class CreateColorComponent implements OnInit {
 
   validatorRestructJson() {
     var data = {
-      nombre: this.formColor.value.nombre.toUpperCase(),
-      estado: this.formColor.value.estado
+      nombre: this.formTienda.value.nombre.toUpperCase(),
+      direccion: this.formTienda.value.direccion.toUpperCase(),
+      estado: this.formTienda.value.estado
     }
     return data;
   }

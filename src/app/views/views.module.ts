@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ViewsRoutingModule } from './views-routing.module';
 import { CategoriaModule } from './categoria/categoria.module';
 import { ColorModule } from './color/color.module';
+import { TiendaModule } from './tienda/tienda.module';
+import { TipoCueroModule } from './tipo-cuero/tipo-cuero.module';
 
 @NgModule({
   declarations: [],
@@ -10,7 +12,9 @@ import { ColorModule } from './color/color.module';
     CommonModule,
     ViewsRoutingModule,
     CategoriaModule,
-    ColorModule
+    ColorModule,
+    TiendaModule,
+    TipoCueroModule
   ]
 })
 export class ViewsModule { }

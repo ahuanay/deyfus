@@ -3,11 +3,11 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Categoría</h4>
+        <h4 class="modal-title" id="modal-basic-title">Tienda</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')"><span aria-hidden="true">&times;</span></button>
     </div>
     <div class="modal-body">
-        <form [formGroup]="formCategoria" (ngSubmit)="saveSubmitForm()">
+        <form [formGroup]="formTienda" (ngSubmit)="saveSubmitForm()">
             <div class="row">
                 <div class="col-md-12 form-group">
                     <label>Nombre</label>
@@ -22,16 +22,15 @@
                     </div>
                 </div>
                 <div class="col-md-12 form-group">
-                    <label>Tallas</label>
-                    <tag-input
-                        formControlName="tallas"
-                        [secondaryPlaceholder]="'Ingrese y presione enter'"
-                        [placeholder]="'Nuevo'"
-                        theme='bootstrap'
-                        >
-                    </tag-input>
-                    <div *ngIf="validatorFormStatus && validatorForm.tallas.errors" class="is-invalid-feedback">
-                        <div *ngIf="validatorForm.tallas.errors.required">* Obligatorio</div>
+                    <label>Dirección</label>
+                    <input
+                        type="text"
+                        formControlName="direccion"
+                        class="form-control text-uppercase"
+                        onclick="this.select()"
+                        [ngClass]="{ 'is-invalid': validatorFormStatus && validatorForm.direccion.errors }">
+                    <div *ngIf="validatorFormStatus && validatorForm.direccion.errors" class="invalid-feedback">
+                        <div *ngIf="validatorForm.direccion.errors.required">* Obligatorio</div>
                     </div>
                 </div>
                 <div class="col-md-12 form-group">

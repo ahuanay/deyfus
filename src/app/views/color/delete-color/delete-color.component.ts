@@ -9,7 +9,7 @@ import { WebService } from 'src/app/service/web.service';
 })
 export class DeleteColorComponent implements OnInit {
 
-  @Input() id;
+  @Input() id: any;
   @Output() reload = new EventEmitter();
 
   public modalReference: NgbModalRef;
@@ -19,7 +19,7 @@ export class DeleteColorComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteProducto() {
+  deleteColor() {
     this.webService.deleteColor(this.id).subscribe(
       response => {
         this.reload.emit();

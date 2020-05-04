@@ -18,6 +18,7 @@
                         <tr class="text-center">
                             <th scope="col" style="min-width: 20px;">#</th>
                             <th scope="col" style="min-width: 50px;">Nombre</th>
+                            <th scope="col" style="min-width: 50px;">Estado</th>
                             <th scope="col" style="min-width: 100px;"></th>
                         </tr>
                         </thead>
@@ -25,6 +26,12 @@
                             <tr *ngFor="let item of listColores | filter: filterColor; let i = index" >
                                 <th scope="row" class="vertical-align text-center">{{ i + 1 }}</th>
                                 <td class="vertical-align">{{ item.nombre }}</td>
+                                <ng-container *ngIf="item.estado; else elseActivo">
+                                    <td class="vertical-align">ACTIVO</td>
+                                </ng-container>
+                                <ng-template #elseActivo>
+                                    <td class="vertical-align">INACTIVO</td>
+                                </ng-template>
                                 <td class="vertical-align text-center">
                                     <app-create-color [typeButton]="'update'" [id]="item._id" (reload)="reload()"></app-create-color>
                                     <app-delete-color [id]="item._id" (reload)="reload()"></app-delete-color>
