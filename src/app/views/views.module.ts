@@ -5,6 +5,7 @@ import { CategoriaModule } from './categoria/categoria.module';
 import { ColorModule } from './color/color.module';
 import { TiendaModule } from './tienda/tienda.module';
 import { TipoCueroModule } from './tipo-cuero/tipo-cuero.module';
+import { ModeloModule } from './modelo/modelo.module';
 
 @NgModule({
   declarations: [],
@@ -14,7 +15,8 @@ import { TipoCueroModule } from './tipo-cuero/tipo-cuero.module';
     CategoriaModule,
     ColorModule,
     TiendaModule,
-    TipoCueroModule
+    TipoCueroModule,
+    ModeloModule
   ]
 })
 export class ViewsModule { }

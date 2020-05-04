@@ -20,6 +20,9 @@ export class WebService {
   getAllCategorias(): Observable<any> {
     return this.http.get(this.API_Server + 'categorias/');
   }
+  getActivosCategorias(): Observable<any> {
+    return this.http.get(this.API_Server + 'categorias/activos/');
+  }
   getByIdCategoria(id: any): Observable<any> {
     return this.http.get(this.API_Server + 'categorias/' + id);
   }
@@ -34,8 +37,11 @@ export class WebService {
   }
 
   // Colores
-  getAllColor(): Observable<any> {
+  getAllColores(): Observable<any> {
     return this.http.get(this.API_Server + 'colores/');
+  }
+  getActivosColores(): Observable<any> {
+    return this.http.get(this.API_Server + 'colores/activos/');
   }
   getByIdColor(id: any): Observable<any> {
     return this.http.get(this.API_Server + 'colores/' + id);
@@ -51,8 +57,11 @@ export class WebService {
   }
 
   // Tiendas
-  getAllTienda(): Observable<any> {
+  getAllTiendas(): Observable<any> {
     return this.http.get(this.API_Server + 'tiendas/');
+  }
+  getActivosTiendas(): Observable<any> {
+    return this.http.get(this.API_Server + 'tiendas/activos/');
   }
   getByIdTienda(id: any): Observable<any> {
     return this.http.get(this.API_Server + 'tiendas/' + id);
@@ -68,8 +77,11 @@ export class WebService {
   }
 
   // Tipo cuero
-  getAllTipoCuero(): Observable<any> {
+  getAllTiposCuero(): Observable<any> {
     return this.http.get(this.API_Server + 'tipos_cuero/');
+  }
+  getActivosTiposCuero(): Observable<any> {
+    return this.http.get(this.API_Server + 'tipos_cuero/activos/');
   }
   getByIdTipoCuero(id: any): Observable<any> {
     return this.http.get(this.API_Server + 'tipos_cuero/' + id);
@@ -82,5 +94,25 @@ export class WebService {
   }
   deleteTipoCuero(id: any): Observable<any> {
     return this.http.delete(this.API_Server + 'tipos_cuero/' + id);
+  }
+
+  // Modelo
+  getAllModelos(): Observable<any> {
+    return this.http.get(this.API_Server + 'modelos/');
+  }
+  getActivosModelos(): Observable<any> {
+    return this.http.get(this.API_Server + 'modelos/activos/');
+  }
+  getByIdModelo(id: any): Observable<any> {
+    return this.http.get(this.API_Server + 'modelos/' + id);
+  }
+  createModelo(modelo: any): Observable<any> {
+    return this.http.post(this.API_Server + 'modelos/', modelo);
+  }
+  putModelo(id: any, modelo: any): Observable<any> {
+    return this.http.put(this.API_Server + 'modelos/' + id, modelo)
+  }
+  deleteModelo(id: any): Observable<any> {
+    return this.http.delete(this.API_Server + 'modelos/' + id);
   }
 }

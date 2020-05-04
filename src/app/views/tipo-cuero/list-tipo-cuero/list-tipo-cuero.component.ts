@@ -24,7 +24,7 @@ export class ListTipoCueroComponent implements OnInit {
   }
 
   listTipoCueroQuery() {
-    this.webService.getAllTipoCuero().subscribe(
+    this.webService.getAllTiposCuero().subscribe(
       response => {
         this.listTipoCuero = response;
       },

@@ -4,6 +4,7 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { ColorComponent } from './color/color.component';
 import { TiendaComponent } from './tienda/tienda.component';
 import { TipoCueroComponent } from './tipo-cuero/tipo-cuero.component';
+import { ModeloComponent } from './modelo/modelo.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,25 @@ const routes: Routes = [
     {
         path: 'tipos-cuero',
         component: TipoCueroComponent
+    },
+    {
+        path: 'modelos',
+        component: ModeloComponent
+    },
+    {
+        path: 'productos',
+    },
+    {
+        path: 'productos-ingreso',
+    },
+    {
+        path: 'productos-egreso',
+    },
+    {
+        path: 'alertas',
+    },
+    {
+        path: 'perfil',
     }
 ];
 

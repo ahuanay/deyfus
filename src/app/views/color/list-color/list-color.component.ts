@@ -24,7 +24,7 @@ export class ListColorComponent implements OnInit {
   }
 
   listColoresQuery() {
-    this.webService.getAllColor().subscribe(
+    this.webService.getAllColores().subscribe(
       response => {
         this.listColores = response;
       },

@@ -24,7 +24,7 @@ export class ListTiendaComponent implements OnInit {
   }
 
   listTiendasQuery() {
-    this.webService.getAllTienda().subscribe(
+    this.webService.getAllTiendas().subscribe(
       response => {
         this.listTiendas = response;        
       },
