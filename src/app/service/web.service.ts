@@ -33,4 +33,20 @@ export class WebService {
     return this.http.delete(this.API_Server + 'categorias/' + id);
   }
 
+  // Colores
+  getAllColor(): Observable<any> {
+    return this.http.get(this.API_Server + 'colores/');
+  }
+  getByIdColor(id: any): Observable<any> {
+    return this.http.get(this.API_Server + 'colores/' + id);
+  }
+  createColor(color: any): Observable<any> {
+    return this.http.post(this.API_Server + 'colores/', color);
+  }
+  putColor(id: any, color: any): Observable<any> {
+    return this.http.put(this.API_Server + 'colores/' + id, color)
+  }
+  deleteColor(id: any): Observable<any> {
+    return this.http.delete(this.API_Server + 'colores/' + id);
+  }
 }

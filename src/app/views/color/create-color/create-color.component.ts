@@ -4,22 +4,22 @@ import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WebService } from 'src/app/service/web.service';
 
 @Component({
-  selector: 'app-create-categoria',
-  templateUrl: './create-categoria.component.html',
-  styleUrls: ['./create-categoria.component.css']
+  selector: 'app-create-color',
+  templateUrl: './create-color.component.html',
+  styleUrls: ['./create-color.component.css']
 })
-export class CreateCategoriaComponent implements OnInit {
+export class CreateColorComponent implements OnInit {
 
   @Input() id: any;
   @Input() typeButton: any;
   @Output() reload = new EventEmitter();
 
-  public formCategoria: FormGroup;
+  public formColor: FormGroup;
   public hiddenCreateButton: boolean;
   public hiddenUpdateButton: boolean;
   public validatorFormStatus: boolean;
   public modalReference: NgbModalRef;
-  get validatorForm() { return this.formCategoria.controls; }
+  get validatorForm() { return this.formColor.controls; }
 
   constructor(private webService: WebService, private formBuilder: FormBuilder, private modalService: NgbModal) { }
 
@@ -45,17 +45,15 @@ export class CreateCategoriaComponent implements OnInit {
   }
 
   inicializatorProductoForm() {
-    this.formCategoria = this.formBuilder.group({
+    this.formColor = this.formBuilder.group({
       nombre: ['', Validators.required],
-      tallas: [[], Validators.required],
     });
   }
 
   inicializatorByIdProducto() {
-    this.webService.getByIdCategoria(this.id).subscribe(
+    this.webService.getByIdColor(this.id).subscribe(
       response => {
-        this.formCategoria.get('nombre').setValue(response.nombre);
-        this.formCategoria.get('tallas').setValue(this.convertArrayIntToChipsArray(response.tallas));        
+        this.formColor.get('nombre').setValue(response.nombre);      
       },
       error => {
         console.log(error);
@@ -65,7 +63,7 @@ export class CreateCategoriaComponent implements OnInit {
 
   saveSubmitForm() {
     this.validatorFormStatus = true;
-    if (this.formCategoria.invalid) {
+    if (this.formColor.invalid) {
         return;
     }
 
@@ -77,7 +75,7 @@ export class CreateCategoriaComponent implements OnInit {
   }
 
   saveForm() {
-    this.webService.createCategoria(this.validatorRestructJson()).subscribe(
+    this.webService.createColor(this.validatorRestructJson()).subscribe(
       response => {
         this.reload.emit();
         this.modalReference.close();
@@ -90,11 +88,10 @@ export class CreateCategoriaComponent implements OnInit {
 
   updateForm() {
     const categoria = {
-      nombre: this.formCategoria.value.nombre.toUpperCase(),
-      tallas: this.convertChipsArrayToArrayInt(this.formCategoria.value.tallas),
+      nombre: this.formColor.value.nombre.toUpperCase()
     };
 
-    this.webService.putCategoria(this.id, categoria).subscribe(
+    this.webService.putColor(this.id, categoria).subscribe(
       response => {
         this.reload.emit();
         this.modalReference.close();
@@ -107,27 +104,10 @@ export class CreateCategoriaComponent implements OnInit {
 
   validatorRestructJson() {
     var data = {
-      nombre: this.formCategoria.value.nombre.toUpperCase(),
-      tallas: this.convertChipsArrayToArrayInt(this.formCategoria.value.tallas),
+      nombre: this.formColor.value.nombre.toUpperCase(),
       estado: true
     }
     return data;
-  }
-
-  convertChipsArrayToArrayInt(array: any) {
-    var arrayInt = [];
-    array.forEach(e => {
-      arrayInt.push(parseInt(e.value));
-    });
-    return arrayInt;
-  }
-
-  convertArrayIntToChipsArray(array: any) {
-    var chipsArray = [];
-    array.forEach(e => {
-      chipsArray.push({value: e, display: e});
-    });
-    return chipsArray;
   }
 
   openModal(content: any) {
