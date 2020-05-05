@@ -16,6 +16,11 @@ export class WebService {
     return this.http.post(this.API_Server + 'usuarios/login/', login);
   }
 
+  // Alerta
+  getAllAlertas(): Observable<any> {
+    return this.http.get(this.API_Server + 'alertas/');
+  }
+
   // Categorias
   getAllCategorias(): Observable<any> {
     return this.http.get(this.API_Server + 'categorias/');
@@ -114,5 +119,56 @@ export class WebService {
   }
   deleteModelo(id: any): Observable<any> {
     return this.http.delete(this.API_Server + 'modelos/' + id);
+  }
+
+  // Producto
+  getAllProductos(): Observable<any> {
+    return this.http.get(this.API_Server + 'productos/');
+  }
+  getByIdProducto(id: any): Observable<any> {
+    return this.http.get(this.API_Server + 'productos/' + id);
+  }
+  createProducto(producto: any): Observable<any> {
+    return this.http.post(this.API_Server + 'productos/', producto);
+  }
+  putProducto(id: any, producto: any): Observable<any> {
+    return this.http.put(this.API_Server + 'productos/' + id, producto)
+  }
+  deleteProducto(id: any): Observable<any> {
+    return this.http.delete(this.API_Server + 'productos/' + id);
+  }
+
+  // Producto ingreso
+  getAllProductosIngreso(): Observable<any> {
+    return this.http.get(this.API_Server + 'productos-kardex/ingreso/');
+  }
+  getByIdProductoIngreso(id: any): Observable<any> {
+    return this.http.get(this.API_Server + 'productos-kardex/ingreso/' + id);
+  }
+  createProductoIngreso(producto_ingreso: any): Observable<any> {
+    return this.http.post(this.API_Server + 'productos-kardex/ingreso/', producto_ingreso);
+  }
+  putProductoIngreso(id: any, producto_ingreso: any): Observable<any> {
+    return this.http.put(this.API_Server + 'productos-kardex/ingreso/' + id, producto_ingreso)
+  }
+  deleteProductoIngreso(id: any): Observable<any> {
+    return this.http.delete(this.API_Server + 'productos-kardex/ingreso/' + id);
+  }
+
+  // Producto egreso
+  getAllProductosEgreso(): Observable<any> {
+    return this.http.get(this.API_Server + 'productos-kardex/egreso/');
+  }
+  getByIdProductoEgreso(id: any): Observable<any> {
+    return this.http.get(this.API_Server + 'productos-kardex/egreso/' + id);
+  }
+  createProductoEgreso(producto_egreso: any): Observable<any> {
+    return this.http.post(this.API_Server + 'productos-kardex/egreso/', producto_egreso);
+  }
+  putProductoEgreso(id: any, producto_egreso: any): Observable<any> {
+    return this.http.put(this.API_Server + 'productos-kardex/egreso/' + id, producto_egreso)
+  }
+  deleteProductoEgreso(id: any): Observable<any> {
+    return this.http.delete(this.API_Server + 'productos-kardex/egreso/' + id);
   }
 }

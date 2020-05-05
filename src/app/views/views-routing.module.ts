@@ -5,6 +5,7 @@ import { ColorComponent } from './color/color.component';
 import { TiendaComponent } from './tienda/tienda.component';
 import { TipoCueroComponent } from './tipo-cuero/tipo-cuero.component';
 import { ModeloComponent } from './modelo/modelo.component';
+import { ProductoIngresoComponent } from './producto-ingreso/producto-ingreso.component';
 
 const routes: Routes = [
     {
@@ -32,6 +33,7 @@ const routes: Routes = [
     },
     {
         path: 'productos-ingreso',
+        component: ProductoIngresoComponent
     },
     {
         path: 'productos-egreso',

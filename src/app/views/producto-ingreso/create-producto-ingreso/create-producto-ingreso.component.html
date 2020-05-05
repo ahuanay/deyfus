@@ -1,0 +1,168 @@
+<button type="button" class="btn btn-md btn-outline-primary btn-block" (click)="openModal(content)" [hidden]="hiddenCreateButton">Crear</button>
+<button type="button" class="btn btn-info btn-sm m-1" (click)="openModal(content)" [hidden]="hiddenUpdateButton">Editar</button>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Producto Ingreso</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formProductoIngreso" (ngSubmit)="saveSubmitForm()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <ng-template #rtModelos let-r="result" let-t="term">
+                                <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
+                            </ng-template>
+                            <label for="modelo">Modelo</label>
+                            <input
+                                id="modelo"
+                                type="text"
+                                class="form-control"
+                                formControlName="modelo"
+                                onclick="this.select()"
+                                placeholder="buscar ..."
+                                [ngbTypeahead]="searchModelos"
+                                [resultTemplate]="rtModelos"
+                                [inputFormatter]="formatterModelos"
+                                [editable]='false'
+                                [ngClass]="{ 'is-invalid': validatorFormStatus && validatorForm.modelo.errors }">
+                            <div *ngIf="validatorFormStatus && validatorForm.modelo.errors" class="invalid-feedback">
+                                <div *ngIf="validatorForm.modelo.errors.required">* Obligatorio</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="categoria">Categoría</label>
+                            <select
+                                id="categoria"
+                                class="form-control"
+                                formControlName="categoria"
+                                (change)="changeCategoria($event)"
+                                [ngClass]="{ 'is-invalid': validatorFormStatus && validatorForm.categoria.errors }">
+                                <option value="">Seleccione</option>
+                                <ng-container *ngFor="let categoria of listCategorias">
+                                    <option value="{{ categoria._id }}">{{ categoria.nombre }}</option>
+                                </ng-container>
+                            </select>
+                            <div *ngIf="validatorFormStatus && validatorForm.categoria.errors" class="invalid-feedback">
+                                <div *ngIf="validatorForm.categoria.errors.required">* Obligatorio</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <ng-template #rtTiposCuero let-r="result" let-t="term">
+                                <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
+                            </ng-template>
+                            <label for="tipo_cuero">Tipo de Cuero</label>
+                            <input
+                                id="tipo_cuero"
+                                type="text"
+                                class="form-control"
+                                formControlName="tipo_cuero"
+                                onclick="this.select()"
+                                placeholder="buscar ..."
+                                [ngbTypeahead]="searchTiposCuero"
+                                [resultTemplate]="rtTiposCuero"
+                                [inputFormatter]="formatterTiposCuero"
+                                [editable]='false'
+                                [ngClass]="{ 'is-invalid': validatorFormStatus && validatorForm.tipo_cuero.errors }">
+                            <div *ngIf="validatorFormStatus && validatorForm.tipo_cuero.errors" class="invalid-feedback">
+                                <div *ngIf="validatorForm.tipo_cuero.errors.required">* Obligatorio</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <ng-template #rtColores let-r="result" let-t="term">
+                                <ngb-highlight [result]="r.nombre" [term]="t"></ngb-highlight>
+                            </ng-template>
+                            <label for="color">Color</label>
+                            <input
+                                id="color"
+                                type="text"
+                                class="form-control"
+                                formControlName="color"
+                                onclick="this.select()"
+                                placeholder="buscar ..."
+                                [ngbTypeahead]="searchColores"
+                                [resultTemplate]="rtColores"
+                                [inputFormatter]="formatterColores"
+                                [editable]='false'
+                                [ngClass]="{ 'is-invalid': validatorFormStatus && validatorForm.color.errors }">
+                            <div *ngIf="validatorFormStatus && validatorForm.color.errors" class="invalid-feedback">
+                                <div *ngIf="validatorForm.color.errors.required">* Obligatorio</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="precio">Precio</label>
+                            <input
+                                id="precio"
+                                type="number"
+                                class="form-control"
+                                formControlName="precio"
+                                min="0"
+                                placeholder="precio"
+                                [ngClass]="{ 'is-invalid': validatorFormStatus && validatorForm.precio.errors }">
+                            <div *ngIf="validatorFormStatus && validatorForm.precio.errors" class="invalid-feedback">
+                                <div *ngIf="validatorForm.precio.errors.required">* Obligatorio</div>
+                                <div *ngIf="validatorForm.precio.errors.min">* Valor mínimo 0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" *ngIf="listTallas.length != 0">
+                            <div class="table-responsive mt-4 mb-4">
+                                <label>Tallas</label>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <ng-container *ngFor="let talla of listTallas">
+                                                <th>{{ talla }}</th>
+                                            </ng-container>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr formArrayName="tallas">
+                                            <ng-container [formGroupName]="i" *ngFor="let item of formTallas.controls; let i=index">
+                                                <td>
+                                                    <input
+                                                        type="number"
+                                                        class="form-control"
+                                                        style="width: 90px;"
+                                                        formControlName="cantidad"
+                                                        [ngClass]="{ 'is-invalid': validatorFormStatus && formTallas.controls[i]['controls']['cantidad'].errors }">
+                                                    <div *ngIf="validatorFormStatus && formTallas.controls[i]['controls']['cantidad'].errors" class="invalid-feedback">
+                                                        <div *ngIf="formTallas.controls[i]['controls']['cantidad'].errors.min">* Valor mínimo 1</div>
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <div class="contenedor-imagen-modelo">
+                                <ng-container *ngIf="formProductoIngreso.value.modelo !== null; else elseNullModelo">
+                                    <ng-container *ngIf="formProductoIngreso.value.modelo !== undefined; else elseTemplate">
+                                        <img src="{{ formProductoIngreso.value.modelo.imagen_url }}" class="imagen-modelo">
+                                    </ng-container>
+                                    <ng-template #elseTemplate>
+                                        <img src="/assets/imagenes/images.png" class="imagen-modelo">
+                                    </ng-template>
+                                </ng-container>
+                                <ng-template #elseNullModelo>
+                                    <img src="/assets/imagenes/images.png" class="imagen-modelo">
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer row">
+                <button type="submit" class="btn btn-info">Guardar</button>
+                <button type="button" class="btn btn-outline-danger" (click)="d('Cross click')">Salir</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebService } from 'src/app/service/web.service';
 
 @Component({
   selector: 'app-list-modelo',
@@ -6,10 +7,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-modelo.component.css']
 })
 export class ListModeloComponent implements OnInit {
+  
+  public listModelos: any;
+  public filterModelo: any;
 
-  constructor() { }
+  constructor(private webService: WebService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.inicilizator();
   }
 
+  inicilizator() {
+    this.listModelos = [];
+    this.filterModelo = '';
+    this.listModelosQuery();
+  }
+
+  listModelosQuery() {
+    this.webService.getAllModelos().subscribe(
+      response => {
+        this.listModelos = response;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  reload() {
+    this.inicilizator();
+  }
 }
