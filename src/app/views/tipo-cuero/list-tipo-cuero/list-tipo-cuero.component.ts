@@ -14,10 +14,10 @@ export class ListTipoCueroComponent implements OnInit {
   constructor(private webService: WebService) { }
 
   ngOnInit() {
-    this.inicilizator();
+    this.inicializator();
   }
 
-  inicilizator() {
+  inicializator() {
     this.listTipoCuero = [];
     this.filterTipoCuero = '';
     this.listTipoCueroQuery();
@@ -35,6 +35,6 @@ export class ListTipoCueroComponent implements OnInit {
   }
 
   reload() {
-    this.inicilizator();
+    this.inicializator();
   }
 }

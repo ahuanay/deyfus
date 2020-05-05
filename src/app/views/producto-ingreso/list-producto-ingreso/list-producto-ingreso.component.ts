@@ -10,17 +10,29 @@ export class ListProductoIngresoComponent implements OnInit {
   
   public listProductosIngreso: any;
   public filterProductoIngreso: any;
+  public tienda_id: any;
 
   constructor(private webService: WebService) { }
 
   ngOnInit() {
-    this.inicilizator();
+    this.inicializator();
   }
 
-  inicilizator() {
+  inicializator() {
     this.listProductosIngreso = [];
     this.filterProductoIngreso = '';
     this.listProductosIngresoQuery();
+    this.tienda_id = localStorage.getItem('tienda_id');
+    this.changeTiendaId();
+  }
+
+  changeTiendaId() {
+    setInterval(() => {
+      if (this.tienda_id != localStorage.getItem('tienda_id')) {
+        this.listProductosIngresoQuery();
+        this.tienda_id = localStorage.getItem('tienda_id');
+      }
+    }, 1000);
   }
 
   listProductosIngresoQuery() {
@@ -35,6 +47,6 @@ export class ListProductoIngresoComponent implements OnInit {
   }
 
   reload() {
-    this.inicilizator();
+    this.inicializator();
   }
 }

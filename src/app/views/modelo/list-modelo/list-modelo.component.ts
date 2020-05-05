@@ -14,10 +14,10 @@ export class ListModeloComponent implements OnInit {
   constructor(private webService: WebService) { }
 
   ngOnInit() {
-    this.inicilizator();
+    this.inicializator();
   }
 
-  inicilizator() {
+  inicializator() {
     this.listModelos = [];
     this.filterModelo = '';
     this.listModelosQuery();
@@ -35,6 +35,6 @@ export class ListModeloComponent implements OnInit {
   }
 
   reload() {
-    this.inicilizator();
+    this.inicializator();
   }
 }

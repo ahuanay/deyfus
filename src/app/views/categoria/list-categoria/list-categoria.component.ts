@@ -14,10 +14,10 @@ export class ListCategoriaComponent implements OnInit {
   constructor(private webService: WebService) { }
 
   ngOnInit() {
-    this.inicilizator();
+    this.inicializator();
   }
 
-  inicilizator() {
+  inicializator() {
     this.listCategorias = [];
     this.filterCategoria = '';
     this.listCategoriasQuery();
@@ -39,6 +39,6 @@ export class ListCategoriaComponent implements OnInit {
   }
 
   reload() {
-    this.inicilizator();
+    this.inicializator();
   }
 }

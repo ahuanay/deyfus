@@ -14,10 +14,10 @@ export class ListColorComponent implements OnInit {
   constructor(private webService: WebService) { }
 
   ngOnInit() {
-    this.inicilizator();
+    this.inicializator();
   }
 
-  inicilizator() {
+  inicializator() {
     this.listColores = [];
     this.filterColor = '';
     this.listColoresQuery();
@@ -35,6 +35,6 @@ export class ListColorComponent implements OnInit {
   }
 
   reload() {
-    this.inicilizator();
+    this.inicializator();
   }
 }
