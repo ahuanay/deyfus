@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { WebService } from 'src/app/service/web.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class ListProductoIngresoComponent implements OnInit {
   }
 
   listProductosIngresoQuery() {
-    this.webService.getAllProductosIngreso().subscribe(
+    this.webService.getAllProductosIngreso(localStorage.getItem('tienda_id')).subscribe(
       response => {
         this.listProductosIngreso = response;
       },
