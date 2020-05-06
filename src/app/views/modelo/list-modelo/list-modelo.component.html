@@ -1,47 +1,57 @@
 <div class="container">
-    <h3 class="text-center m-5">Lista Modelos</h3>
-    <div class="row">
-        <div class="form-group col-md-12">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="search" class="form-control" name="filterModelo" [(ngModel)]="filterModelo"  placeholder="buscar modelo ...">
-                </div>
-                <div class="col-md-2">
-                    <app-create-modelo [typeButton]="'create'" [id]="''" (reload)="reload()"></app-create-modelo>
+    <div class="col-md-7 mt-4 mr-auto ml-auto p-4 container-form">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">MODELOS</h1>
+                <hr>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="search" class="form-control" name="filterModelo" [(ngModel)]="filterModelo"  placeholder="buscar modelo ...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 ml-auto">
+                        <app-create-modelo [typeButton]="'create'" [id]="''" (reload)="reload()"></app-create-modelo>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead class="thead-inverse">
-                        <tr class="text-center">
-                            <th scope="col" style="min-width: 20px;">#</th>
-                            <th scope="col" style="min-width: 50px;">Nombre</th>
-                            <th scope="col" style="min-width: 50px;">Imagen</th>
-                            <th scope="col" style="min-width: 50px;">Estado</th>
-                            <th scope="col" style="min-width: 100px;"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of listModelos | filter: filterModelo; let i = index" >
-                                <th scope="row" class="vertical-align text-center">{{ i + 1 }}</th>
-                                <td class="vertical-align">{{ item.nombre }}</td>
-                                <td class="vertical-align"><img src="{{ item.imagen_url }}" width="70" height="40" alt="modelo"></td>
-                                <ng-container *ngIf="item.estado; else elseActivo">
-                                    <td class="vertical-align">ACTIVO</td>
-                                </ng-container>
-                                <ng-template #elseActivo>
-                                    <td class="vertical-align">INACTIVO</td>
-                                </ng-template>
-                                <td class="vertical-align text-center">
-                                    <app-create-modelo [typeButton]="'update'" [id]="item._id" (reload)="reload()"></app-create-modelo>
-                                    <app-delete-modelo [id]="item._id" (reload)="reload()"></app-delete-modelo>
-                                </td>
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-inverse">
+                            <tr class="text-center">
+                                <th scope="col" style="min-width: 20px;">#</th>
+                                <th scope="col" style="min-width: 50px;">Nombre</th>
+                                <th scope="col" style="min-width: 50px;">Imagen</th>
+                                <th scope="col" style="min-width: 50px;">Estado</th>
+                                <th scope="col" style="min-width: 100px;"></th>
                             </tr>
-                        </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listModelos | filter: filterModelo; let i = index" >
+                                    <th scope="row" class="vertical-align text-center">{{ i + 1 }}</th>
+                                    <td class="vertical-align">{{ item.nombre }}</td>
+                                    <td class="vertical-align"><img src="{{ item.imagen_url }}" width="70" height="40" alt="modelo"></td>
+                                    <ng-container *ngIf="item.estado; else elseActivo">
+                                        <td class="vertical-align">ACTIVO</td>
+                                    </ng-container>
+                                    <ng-template #elseActivo>
+                                        <td class="vertical-align">INACTIVO</td>
+                                    </ng-template>
+                                    <td class="vertical-align text-center">
+                                        <app-create-modelo [typeButton]="'update'" [id]="item._id" (reload)="reload()"></app-create-modelo>
+                                        <app-delete-modelo [id]="item._id" (reload)="reload()"></app-delete-modelo>
+                                    </td>
+                                </tr>
+                            </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+    
 </div>

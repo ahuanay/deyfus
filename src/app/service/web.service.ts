@@ -125,6 +125,9 @@ export class WebService {
   getAllProductos(): Observable<any> {
     return this.http.get(this.API_Server + 'productos/');
   }
+  getByIdTiendaProductos(tienda_id: any): Observable<any> {
+    return this.http.get(this.API_Server + 'productos/tienda/' + tienda_id);
+  }
   getByIdProducto(id: any): Observable<any> {
     return this.http.get(this.API_Server + 'productos/' + id);
   }

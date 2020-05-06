@@ -1,0 +1,50 @@
+<div class="container">
+    <h3 class="text-center m-5">Lista Productos</h3>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="search" class="form-control" name="filterProducto" [(ngModel)]="filterProducto"  placeholder="buscar producto ingreso ...">
+                </div>
+                <div class="col-md-2">
+                    <!-- <app-create-producto [typeButton]="'create'" [id]="''" (reload)="reload()"></app-create-producto> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="thead-inverse">
+                        <tr class="text-center">
+                            <th scope="col" style="min-width: 20px;">#</th>
+                            <th scope="col" style="min-width: 50px;">Modelo</th>
+                            <th scope="col" style="min-width: 50px;">T. Cuero</th>
+                            <th scope="col" style="min-width: 50px;">Color</th>
+                            <th scope="col" style="min-width: 50px;">Categoria</th>
+                            <th scope="col" style="min-width: 50px;">Talla</th>
+                            <th scope="col" style="min-width: 50px;">Cantidad</th>
+                            <th scope="col" style="min-width: 50px;">Precio</th>
+                            <th scope="col" style="min-width: 50px;"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of listProductos | filter: filterProducto; let i = index" >
+                                <th scope="row" class="vertical-align text-center">{{ i + 1 }}</th>
+                                <td class="vertical-align">{{ item.modelo }}</td>
+                                <td class="vertical-align">{{ item.tipo_cuero }}</td>
+                                <td class="vertical-align">{{ item.color }}</td>
+                                <td class="vertical-align">{{ item.categoria }}</td>
+                                <td class="vertical-align">{{ item.tallas }}</td>
+                                <td class="vertical-align">{{ item.cantidad }}</td>
+                                <td class="vertical-align">S/. {{ item.precio }}</td>
+                                <td class="vertical-align text-center">
+                                    <app-create-producto-egreso [typeButton]="'create'" [id]="item.producto_talla_id" (reload)="reload()"></app-create-producto-egreso>
+                                    <!-- <app-delete-producto [id]="item._id" (reload)="reload()"></app-delete-producto> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
