@@ -131,6 +131,15 @@ export class WebService {
   getByIdProducto(id: any): Observable<any> {
     return this.http.get(this.API_Server + 'productos/' + id);
   }
+  getPrecioProducto(search: any): Observable<any> {
+    const params = new HttpParams()
+    .set('modelo_id', search.modelo_id)
+    .set('categoria_id', search.categoria_id)
+    .set('tipo_cuero_id', search.tipo_cuero_id)
+    .set('color_id', search.color_id)
+    .set('tienda_id', search.tienda_id);
+    return this.http.get(this.API_Server + 'productos/precio/', {params} );
+  }
   createProducto(producto: any): Observable<any> {
     return this.http.post(this.API_Server + 'productos/', producto);
   }
@@ -142,11 +151,9 @@ export class WebService {
   }
 
   // Producto ingreso
-  
   getAllProductosIngreso(tienda_id: any): Observable<any> {
     const params = new HttpParams()
     .set('tienda_id', tienda_id);
-
     return this.http.get(this.API_Server + 'productos-kardex/ingreso/', {params} );
   }
   getByIdProductoIngreso(id: any): Observable<any> {
@@ -163,8 +170,10 @@ export class WebService {
   }
 
   // Producto egreso
-  getAllProductosEgreso(): Observable<any> {
-    return this.http.get(this.API_Server + 'productos-kardex/egreso/');
+  getAllProductosEgreso(tienda_id: any): Observable<any> {
+    const params = new HttpParams()
+    .set('tienda_id', tienda_id);
+    return this.http.get(this.API_Server + 'productos-kardex/egreso/', {params} );
   }
   getByIdProductoEgreso(id: any): Observable<any> {
     return this.http.get(this.API_Server + 'productos-kardex/egreso/' + id);

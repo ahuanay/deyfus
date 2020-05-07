@@ -30,6 +30,7 @@ export class CreateProductoIngresoComponent implements OnInit {
   public listColores: any;
   public listTallas: any;
   public imagen_url: any;
+  public readonlyPrecio: Boolean;
 
   get validatorForm() { return this.formProductoIngreso.controls; }
   get formTallas() { return this.formProductoIngreso.get('tallas') as FormArray; }
@@ -56,6 +57,7 @@ export class CreateProductoIngresoComponent implements OnInit {
     this.listColores = [];
     this.listTallas = [];
     this.validatorFormStatus = false;
+    this.readonlyPrecio = false;
 
     this.listModelosQuery();
     this.listCategoriasQuery();
@@ -244,6 +246,35 @@ export class CreateProductoIngresoComponent implements OnInit {
       this.listTallas.forEach(e => {
         control.push(this.formBuilder.group({ talla: e, cantidad: [null, Validators.min(1)] }));
       });
+    }
+  }
+
+  changeValues() {
+    var modelo_id = this.formProductoIngreso.value.modelo;
+    var categoria_id = this.formProductoIngreso.value.categoria;
+    var tipo_cuero_id = this.formProductoIngreso.value.tipo_cuero;
+    var tienda_id = localStorage.getItem('tienda_id');
+    var color_id = this.formProductoIngreso.value.color;
+
+    if(modelo_id != null && categoria_id != '' && tipo_cuero_id != null && color_id != null) {
+      var data = {
+        modelo_id: modelo_id._id,
+        categoria_id: categoria_id,
+        tipo_cuero_id: tipo_cuero_id._id,
+        tienda_id,
+        color_id: color_id._id,
+      }
+      this.webService.getPrecioProducto(data).subscribe(
+        response => {
+          this.formProductoIngreso.get('precio').setValue(response.precio);
+          this.readonlyPrecio = true;
+        },
+        error => {
+          console.log(error);
+          this.formProductoIngreso.get('precio').setValue(null);
+          this.readonlyPrecio = false;
+        }
+      );
     }
   }
 

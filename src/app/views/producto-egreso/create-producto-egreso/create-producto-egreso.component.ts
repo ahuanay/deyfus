@@ -2,8 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WebService } from 'src/app/service/web.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 
@@ -16,6 +14,7 @@ export class CreateProductoEgresoComponent implements OnInit {
 
   @Input() id: any;
   @Input() typeButton: any;
+  @Input() cantidad: any;
   @Output() reload = new EventEmitter();
 
   public formProductoEgreso: FormGroup;
@@ -27,20 +26,14 @@ export class CreateProductoEgresoComponent implements OnInit {
   public listTiendas: any;
 
   get validatorForm() { return this.formProductoEgreso.controls; }
-  get formTallas() { return this.formProductoEgreso.get('tallas') as FormArray; }
 
   constructor(private webService: WebService, private formBuilder: FormBuilder, private modalService: NgbModal, private toastrService: ToastrService) { }
 
   ngOnInit() {
-    if (this.typeButton === 'create') {
-      this.hiddenCreateButton = false;
-    } else {
+    if (this.cantidad === 0) {
       this.hiddenCreateButton = true;
-    }
-    if (this.typeButton === 'update') {
-      this.hiddenUpdateButton = false;
     } else {
-      this.hiddenUpdateButton = true;
+      this.hiddenCreateButton = false;
     }
   }
 
@@ -50,30 +43,14 @@ export class CreateProductoEgresoComponent implements OnInit {
 
     this.listTiendasQuery();
     this.inicializatorProductoEgresoForm();
-
-    if (this.id !== '') {
-      this.inicializatorByIdProductoEgreso();
-    }
     
   }
 
   inicializatorProductoEgresoForm() {
     this.formProductoEgreso = this.formBuilder.group({
       tienda: ['', Validators.required],
-      cantidad: [null, [Validators.required, Validators.min(1)]]
+      cantidad: [null, [Validators.required, Validators.min(1), Validators.max(this.cantidad)]]
     });
-  }
-
-  inicializatorByIdProductoEgreso() {
-    // this.webService.getByIdProductoEgreso(this.id).subscribe(
-    //   response => {
-    //     this.formProductoEgreso.get('nombre').setValue(response.nombre);
-    //     this.formProductoEgreso.get('estado').setValue(response.estado);      
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // );
   }
 
   listTiendasQuery() {
@@ -87,41 +64,25 @@ export class CreateProductoEgresoComponent implements OnInit {
     )
   }
 
-  saveSubmitForm() {
+  saveSubmitForm() {    
     this.validatorFormStatus = true;
     if (this.formProductoEgreso.invalid) {
       return;
     }
 
-    if (this.id !== '') {
-      this.updateForm();
-    } else {
-      this.saveForm();
-    }
+    this.saveForm();
   }
 
   saveForm() {
-    // this.webService.createProductoEgreso(this.validatorRestructJson()).subscribe(
-    //   response => {
-    //     this.reload.emit();
-    //     this.modalReference.close();
-    //   },
-    //   error => {
-    //     console.log(error.error.error);
-    //   }
-    // );
-  }
-
-  updateForm() {
-    // this.webService.putProductoEgreso(this.id, this.validatorRestructJson()).subscribe(
-    //   response => {
-    //     this.reload.emit();
-    //     this.modalReference.close();
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // );
+    this.webService.createProductoEgreso(this.validatorRestructJson()).subscribe(
+      response => {
+        this.reload.emit();
+        this.modalReference.close();
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   validatorRestructJson() {
@@ -129,14 +90,9 @@ export class CreateProductoEgresoComponent implements OnInit {
       fecha: moment().format('YYYY-MM-DD'),
       hora: moment().format('hh:mm:ss'),
       empleado_id: JSON.parse(localStorage.getItem('usuario'))._id,
-      tipo_kardex_id: '5eae26e3c9120e3db8e8cfae',
-      modelo_id: this.formProductoEgreso.value.modelo._id,
-      categoria_id: this.formProductoEgreso.value.categoria,
-      tipo_cuero_id: this.formProductoEgreso.value.tipo_cuero._id,
-      tienda_id: localStorage.getItem('tienda_id'),
-      color_id: this.formProductoEgreso.value.color._id,
-      precio: this.formProductoEgreso.value.precio,
-      tallas: this.validatorExistsTallas(this.formProductoEgreso.value.tallas),
+      tienda_id: this.formProductoEgreso.value.tienda,
+      cantidad: this.formProductoEgreso.value.cantidad,
+      producto_talla_id: this.id
     }
     return data;
   }

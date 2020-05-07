@@ -20,8 +20,8 @@
                             <option value="{{ tienda._id }}">{{ tienda.nombre }}</option>
                         </ng-container>
                     </select>
-                    <div *ngIf="validatorFormStatus && validatorForm.categoria.errors" class="invalid-feedback">
-                        <div *ngIf="validatorForm.categoria.errors.required">* Obligatorio</div>
+                    <div *ngIf="validatorFormStatus && validatorForm.tienda.errors" class="invalid-feedback">
+                        <div *ngIf="validatorForm.tienda.errors.required">* Obligatorio</div>
                     </div>
                 </div>
                 
@@ -38,6 +38,7 @@
                     <div *ngIf="validatorFormStatus && validatorForm.cantidad.errors" class="invalid-feedback">
                         <div *ngIf="validatorForm.cantidad.errors.required">* Obligatorio</div>
                         <div *ngIf="validatorForm.cantidad.errors.min">* Valor mínimo 1</div>
+                        <div *ngIf="validatorForm.cantidad.errors.max">* Valor máximo {{cantidad}}</div>
                     </div>
                 </div>
             </div>
