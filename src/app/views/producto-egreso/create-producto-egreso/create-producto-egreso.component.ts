@@ -4,6 +4,7 @@ import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WebService } from 'src/app/service/web.service';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { SocketService } from 'src/app/service/socket.service';
 
 @Component({
   selector: 'app-create-producto-egreso',
@@ -24,10 +25,11 @@ export class CreateProductoEgresoComponent implements OnInit {
   public modalReference: NgbModalRef;
 
   public listTiendas: any;
+  public tienda_id: any;
 
   get validatorForm() { return this.formProductoEgreso.controls; }
 
-  constructor(private webService: WebService, private formBuilder: FormBuilder, private modalService: NgbModal, private toastrService: ToastrService) { }
+  constructor(private webService: WebService, private socketService: SocketService, private formBuilder: FormBuilder, private modalService: NgbModal, private toastrService: ToastrService) { }
 
   ngOnInit() {
     if (this.cantidad === 0) {
@@ -42,8 +44,8 @@ export class CreateProductoEgresoComponent implements OnInit {
     this.validatorFormStatus = false;
 
     this.listTiendasQuery();
+    this.tienda_id = localStorage.getItem('tienda_id');
     this.inicializatorProductoEgresoForm();
-    
   }
 
   inicializatorProductoEgresoForm() {
@@ -90,7 +92,8 @@ export class CreateProductoEgresoComponent implements OnInit {
       fecha: moment().format('YYYY-MM-DD'),
       hora: moment().format('hh:mm:ss'),
       empleado_id: JSON.parse(localStorage.getItem('usuario'))._id,
-      tienda_id: this.formProductoEgreso.value.tienda,
+      tienda_id: this.tienda_id,
+      tienda_destino_id: this.formProductoEgreso.value.tienda,
       cantidad: this.formProductoEgreso.value.cantidad,
       producto_talla_id: this.id
     }

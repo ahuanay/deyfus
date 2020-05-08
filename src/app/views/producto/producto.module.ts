@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProductoComponent } from './producto.component';
 import { ListProductoComponent } from './list-producto/list-producto.component';
 import { CreateProductoComponent } from './create-producto/create-producto.component';
@@ -22,7 +23,8 @@ import { ProductoEgresoModule } from '../producto-egreso/producto-egreso.module'
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    ProductoEgresoModule
+    ProductoEgresoModule,
+    NgxSpinnerModule
   ],
   exports: [
     ProductoComponent

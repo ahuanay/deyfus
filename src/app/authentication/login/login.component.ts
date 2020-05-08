@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebService } from 'src/app/service/web.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   get validatorForm() { return this.formLogin.controls; }
 
-  constructor(private router: Router, private webService: WebService, private formBuilder: FormBuilder, private toastrService: ToastrService) { }
+  constructor(private router: Router, private webService: WebService, private formBuilder: FormBuilder, private toastrService: ToastrService, private spinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.inicializator();
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
     if (this.formLogin.invalid) {
       return;
     }
+    this.spinnerService.show();
     this.saveForm();
   }
 
@@ -48,10 +50,11 @@ export class LoginComponent implements OnInit {
       response => {
         localStorage.setItem('usuario', JSON.stringify(response));
         this.router.navigate(['/dashboard/home']);
+        this.spinnerService.hide();
       },
       error => {
-        console.log(error.error.error);
         this.mmsToastrService(error.error.error, '!Error¡', 'error');
+        this.spinnerService.hide();
       }
     );
   }

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { SocketService } from 'src/app/service/socket.service';
 
 @Component({
   selector: 'app-create-producto-ingreso',
@@ -35,7 +36,7 @@ export class CreateProductoIngresoComponent implements OnInit {
   get validatorForm() { return this.formProductoIngreso.controls; }
   get formTallas() { return this.formProductoIngreso.get('tallas') as FormArray; }
 
-  constructor(private webService: WebService, private formBuilder: FormBuilder, private modalService: NgbModal, private toastrService: ToastrService) { }
+  constructor(private webService: WebService, private socketService: SocketService, private formBuilder: FormBuilder, private modalService: NgbModal, private toastrService: ToastrService) { }
 
   ngOnInit() {
     if (this.typeButton === 'create') {

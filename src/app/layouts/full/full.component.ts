@@ -30,7 +30,7 @@ export class FullComponent implements OnInit {
     this.webService.getActivosTiendas().subscribe(
       response => {
         this.listTiendas = response;
-        localStorage.setItem('tienda_id', response[0]._id)
+        localStorage.setItem('tienda_id', response[0]._id);
       },
       error => {
         console.log(error);

@@ -1,3 +1,11 @@
+<ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>
+
 <div class="container">
     <div class="col-md-12 mt-4 mr-auto ml-auto p-4 container-form">
         <div class="row">
@@ -24,7 +32,8 @@
                                 <th scope="col" style="min-width: 50px;">Color</th>
                                 <th scope="col" style="min-width: 50px;">Categoria</th>
                                 <th scope="col" style="min-width: 50px;">Talla</th>
-                                <th scope="col" style="min-width: 50px;">Cantidad I.</th>
+                                <th scope="col" style="min-width: 50px;">Cantidad E.</th>
+                                <th scope="col" style="min-width: 50px;">Tienda Destino</th>
                                 <th scope="col" style="min-width: 100px;"></th>
                             </tr>
                             </thead>
@@ -38,6 +47,7 @@
                                     <td class="vertical-align">{{ item.categoria }}</td>
                                     <td class="vertical-align">{{ item.tallas }}</td>
                                     <td class="vertical-align">{{ item.cantidad_ingreso }}</td>
+                                    <td class="vertical-align">{{ item.tienda_destino }}</td>
                                     <td class="vertical-align text-center">
                                         <!-- <app-create-producto-ingreso [typeButton]="'update'" [id]="item._id" (reload)="reload()"></app-create-producto-ingreso> -->
                                         <!-- <app-delete-producto-ingreso [id]="item._id" (reload)="reload()"></app-delete-producto-ingreso> -->

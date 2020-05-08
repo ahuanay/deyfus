@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebService } from 'src/app/service/web.service';
+import { SocketService } from 'src/app/service/socket.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-list-producto',
@@ -12,13 +14,14 @@ export class ListProductoComponent implements OnInit {
   public filterProducto: any;
   public tienda_id: any;
 
-  constructor(private webService: WebService) { }
+  constructor(private webService: WebService, private socketService: SocketService, private spinnerService: NgxSpinnerService) { }
 
   ngOnInit() {
     this.inicializator();
   }
 
   inicializator() {
+    this.spinnerService.show();
     this.listProductos = [];
     this.filterProducto = '';
     this.listProductosQuery();
@@ -39,6 +42,7 @@ export class ListProductoComponent implements OnInit {
     this.webService.getByIdTiendaProductos(localStorage.getItem('tienda_id')).subscribe(
       response => {
         this.listProductos = response;
+        this.spinnerService.hide();
       },
       error => {
         console.log(error);

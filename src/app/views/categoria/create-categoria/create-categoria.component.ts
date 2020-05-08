@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WebService } from 'src/app/service/web.service';
+import { SocketService } from 'src/app/service/socket.service';
 
 @Component({
   selector: 'app-create-categoria',
@@ -21,7 +22,7 @@ export class CreateCategoriaComponent implements OnInit {
   public modalReference: NgbModalRef;
   get validatorForm() { return this.formCategoria.controls; }
 
-  constructor(private webService: WebService, private formBuilder: FormBuilder, private modalService: NgbModal) { }
+  constructor(private webService: WebService, private socketService: SocketService, private formBuilder: FormBuilder, private modalService: NgbModal) { }
 
   ngOnInit() {
     if (this.typeButton === 'create') {
@@ -81,6 +82,7 @@ export class CreateCategoriaComponent implements OnInit {
   saveForm() {
     this.webService.createCategoria(this.validatorRestructJson()).subscribe(
       response => {
+        this.socketService.emit('models:categoria', true);
         this.reload.emit();
         this.modalReference.close();
       },
@@ -93,6 +95,7 @@ export class CreateCategoriaComponent implements OnInit {
   updateForm() {
     this.webService.putCategoria(this.id, this.validatorRestructJson()).subscribe(
       response => {
+        this.socketService.emit('models:categoria', true);
         this.reload.emit();
         this.modalReference.close();
       },

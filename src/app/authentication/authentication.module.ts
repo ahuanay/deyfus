@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { Error404Component } from './error404/error404.component';
 import { LoginComponent } from './login/login.component';
 
@@ -16,7 +17,8 @@ import { LoginComponent } from './login/login.component';
     AuthenticationRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgxSpinnerModule
   ],
   exports: [
     Error404Component,

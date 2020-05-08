@@ -137,7 +137,6 @@ export class WebService {
     .set('categoria_id', search.categoria_id)
     .set('tipo_cuero_id', search.tipo_cuero_id)
     .set('color_id', search.color_id)
-    .set('tienda_id', search.tienda_id);
     return this.http.get(this.API_Server + 'productos/precio/', {params} );
   }
   createProducto(producto: any): Observable<any> {

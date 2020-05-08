@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WebService } from 'src/app/service/web.service';
+import { SocketService } from 'src/app/service/socket.service';
 
 @Component({
   selector: 'app-delete-tienda',
@@ -14,7 +15,7 @@ export class DeleteTiendaComponent implements OnInit {
 
   public modalReference: NgbModalRef;
 
-  constructor(private webService: WebService, private modalService: NgbModal) { }
+  constructor(private webService: WebService, private socketService: SocketService, private modalService: NgbModal) { }
 
   ngOnInit() {
   }
@@ -22,6 +23,7 @@ export class DeleteTiendaComponent implements OnInit {
   deleteTienda() {
     this.webService.deleteTienda(this.id).subscribe(
       response => {
+        this.socketService.emit('models:tienda', true);
         this.reload.emit();
         this.modalReference.close();
       },
