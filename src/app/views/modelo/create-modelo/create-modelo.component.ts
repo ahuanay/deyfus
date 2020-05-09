@@ -20,6 +20,10 @@ export class CreateModeloComponent implements OnInit {
   public hiddenUpdateButton: boolean;
   public validatorFormStatus: boolean;
   public modalReference: NgbModalRef;
+
+  public uploadedFile: File;
+  public url: string;
+
   get validatorForm() { return this.formModelo.controls; }
 
   constructor(private webService: WebService, private socketService: SocketService, private formBuilder: FormBuilder, private modalService: NgbModal) { }
@@ -38,6 +42,8 @@ export class CreateModeloComponent implements OnInit {
   }
 
   inicializator() {
+    this.uploadedFile = null;
+    this.url = null;
     this.inicializatorModeloForm();
     this.validatorFormStatus = false;
     if (this.id !== '') {
@@ -57,7 +63,9 @@ export class CreateModeloComponent implements OnInit {
     this.webService.getByIdModelo(this.id).subscribe(
       response => {
         this.formModelo.get('nombre').setValue(response.nombre);
-        this.formModelo.get('imagen_url').setValue(response.imagen_url);
+        this.url = 'http://codbar-api.herokuapp.com/' + response.imagen_url;
+        this.formModelo.get('imagen_url').clearValidators();
+        this.formModelo.get('imagen_url').updateValueAndValidity();
         this.formModelo.get('estado').setValue(response.estado);      
       },
       error => {
@@ -77,23 +85,11 @@ export class CreateModeloComponent implements OnInit {
     } else {
       this.saveForm();
     }
+    
   }
 
   saveForm() {
-    this.webService.createModelo(this.validatorRestructJson()).subscribe(
-      response => {
-        this.socketService.emit('models:modelo', true);
-        this.reload.emit();
-        this.modalReference.close();
-      },
-      error => {
-        console.log(error.error.error);
-      }
-    );
-  }
-
-  updateForm() {
-    this.webService.putModelo(this.id, this.validatorRestructJson()).subscribe(
+    this.webService.createModelo(this.validatorRestructFormData()).subscribe(
       response => {
         this.socketService.emit('models:modelo', true);
         this.reload.emit();
@@ -105,13 +101,47 @@ export class CreateModeloComponent implements OnInit {
     );
   }
 
-  validatorRestructJson() {
-    var data = {
-      nombre: this.formModelo.value.nombre.toUpperCase(),
-      imagen_url: this.formModelo.value.imagen_url,
-      estado: this.formModelo.value.estado
+  updateForm() {
+    this.webService.putModelo(this.id, this.validatorRestructFormData()).subscribe(
+      response => {
+        this.socketService.emit('models:modelo', true);
+        this.reload.emit();
+        this.modalReference.close();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  validatorRestructFormData() {
+    let formData = new FormData();
+    if(this.uploadedFile != null) {
+      formData.append("file", this.uploadedFile, this.uploadedFile.name);
     }
-    return data;
+    formData.append("nombre", this.formModelo.value.nombre.toUpperCase());
+    formData.append("estado", this.formModelo.value.estado);
+    return formData;
+  }
+
+  onFileChange(e: any) {
+    if(e.target.files.length != 0) {
+      this.uploadedFile = e.target.files[0];
+      if (e.target.files && e.target.files[0]) {
+        var reader = new FileReader();
+        reader.onload = (e:any) => {
+          this.url = e.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    } else {
+      this.uploadedFile = null;
+      this.url = null;
+    }
+    if(this.url == null) {
+      this.formModelo.get('imagen_url').setValidators([Validators.required]);
+      this.formModelo.get('imagen_url').updateValueAndValidity();
+    }
   }
 
   openModal(content: any) {

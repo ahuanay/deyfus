@@ -32,6 +32,7 @@ export class ListProductoIngresoComponent implements OnInit {
   changeTiendaId() {
     setInterval(() => {
       if (this.tienda_id != localStorage.getItem('tienda_id')) {
+        this.spinnerService.show();
         this.listProductosIngresoQuery();
         this.tienda_id = localStorage.getItem('tienda_id');
       }

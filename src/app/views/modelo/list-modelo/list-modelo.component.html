@@ -43,7 +43,7 @@
                                 <tr *ngFor="let item of listModelos | filter: filterModelo; let i = index" >
                                     <th scope="row" class="vertical-align text-center">{{ i + 1 }}</th>
                                     <td class="vertical-align">{{ item.nombre }}</td>
-                                    <td class="vertical-align"><img src="{{ item.imagen_url }}" width="70" height="40" alt="modelo"></td>
+                                    <td class="vertical-align"><img src="http://codbar-api.herokuapp.com/{{ item.imagen_url }}" width="70" height="40" alt="modelo"></td>
                                     <ng-container *ngIf="item.estado; else elseActivo">
                                         <td class="vertical-align">ACTIVO</td>
                                     </ng-container>

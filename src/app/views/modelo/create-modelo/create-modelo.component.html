@@ -24,10 +24,10 @@
                 <div class="col-md-12 form-group">
                     <label>Imagen</label>
                     <input
-                        type="text"
+                        type="file"
                         formControlName="imagen_url"
                         class="form-control"
-                        onclick="this.select()"
+                        (change)="onFileChange($event)"
                         [ngClass]="{ 'is-invalid': validatorFormStatus && validatorForm.imagen_url.errors }">
                     <div *ngIf="validatorFormStatus && validatorForm.imagen_url.errors" class="invalid-feedback">
                         <div *ngIf="validatorForm.imagen_url.errors.required">* Obligatorio</div>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-md-12 form-group">
                     <div class="contenedor-imagen-modelo mr-auto ml-auto">
-                        <img src="/assets/imagenes/images.png" class="imagen-modelo">
+                        <img [src]="url || '/assets/imagenes/images.png'" class="imagen-modelo">
                     </div>
                 </div>
                 <div class="col-md-12 form-group">

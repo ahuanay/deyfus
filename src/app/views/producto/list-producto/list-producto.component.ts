@@ -9,7 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./list-producto.component.css']
 })
 export class ListProductoComponent implements OnInit {
- 
+
   public listProductos: any;
   public filterProducto: any;
   public tienda_id: any;
@@ -32,6 +32,7 @@ export class ListProductoComponent implements OnInit {
   changeTiendaId() {
     setInterval(() => {
       if (this.tienda_id != localStorage.getItem('tienda_id')) {
+        this.spinnerService.show();
         this.listProductosQuery();
         this.tienda_id = localStorage.getItem('tienda_id');
       }

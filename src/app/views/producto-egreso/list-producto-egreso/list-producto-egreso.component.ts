@@ -32,6 +32,7 @@ export class ListProductoEgresoComponent implements OnInit {
   changeTiendaId() {
     setInterval(() => {
       if (this.tienda_id != localStorage.getItem('tienda_id')) {
+        this.spinnerService.show();
         this.listProductosEgresoQuery();
         this.tienda_id = localStorage.getItem('tienda_id');
       }
