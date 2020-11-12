@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "http://deyfus-api.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

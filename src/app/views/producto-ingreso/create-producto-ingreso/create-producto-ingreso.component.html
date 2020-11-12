@@ -149,7 +149,7 @@
                             <div class="contenedor-imagen-modelo">
                                 <ng-container *ngIf="formProductoIngreso.value.modelo !== null; else elseNullModelo">
                                     <ng-container *ngIf="formProductoIngreso.value.modelo !== undefined; else elseTemplate">
-                                        <img src="{{ formProductoIngreso.value.modelo.imagen_url }}" class="imagen-modelo">
+                                        <img src="{{ url_imagen_server }}{{ formProductoIngreso.value.modelo.imagen_url }}" class="imagen-modelo">
                                     </ng-container>
                                     <ng-template #elseTemplate>
                                         <img src="/assets/imagenes/images.png" class="imagen-modelo">

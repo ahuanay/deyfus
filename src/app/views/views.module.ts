@@ -9,6 +9,9 @@ import { ModeloModule } from './modelo/modelo.module';
 import { ProductoIngresoModule } from './producto-ingreso/producto-ingreso.module';
 import { ProductoModule } from './producto/producto.module';
 import { ProductoEgresoModule } from './producto-egreso/producto-egreso.module';
+import { SolicitudEnvioModule } from './solicitud-envio/solicitud-envio.module';
+import { SolicitudCompletadoModule } from './solicitud-completado/solicitud-completado.module';
+import { IncidenciaEnvioModule } from './incidencia-envio/incidencia-envio.module';
 
 @NgModule({
   declarations: [],
@@ -23,6 +26,9 @@ import { ProductoEgresoModule } from './producto-egreso/producto-egreso.module';
     ProductoModule,
     ProductoIngresoModule,
     ProductoEgresoModule,
+    SolicitudEnvioModule,
+    SolicitudCompletadoModule,
+    IncidenciaEnvioModule
   ]
 })
 export class ViewsModule { }

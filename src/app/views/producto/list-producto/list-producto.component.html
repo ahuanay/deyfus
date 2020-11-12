@@ -47,8 +47,7 @@
                                     <td class="vertical-align">{{ item.cantidad }}</td>
                                     <td class="vertical-align">S/. {{ item.precio }}</td>
                                     <td class="vertical-align text-center">
-                                        <app-create-producto-egreso [typeButton]="'create'" [id]="item.producto_talla_id" [cantidad]="item.cantidad" (reload)="reload()"></app-create-producto-egreso>
-                                        <!-- <app-delete-producto [id]="item._id" (reload)="reload()"></app-delete-producto> -->
+                                        <app-create-solicitud-envio [typeButton]="'create'" [id]="item.producto_talla_id" [cantidad]="item.cantidad" (reload)="reload()"></app-create-solicitud-envio>
                                     </td>
                                 </tr>
                             </tbody>

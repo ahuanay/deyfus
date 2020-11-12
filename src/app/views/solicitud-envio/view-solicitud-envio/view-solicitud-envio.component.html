@@ -1,0 +1,85 @@
+<button type="button" class="btn btn-md btn-info btn-block" (click)="openModal(content)">Ver solicitud</button>
+
+<ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">DETALLE DE LA SOLICITUD</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group shadow p-3 bg-white rounded height-cards">
+                            <label for="empleadoSolicita" class="font-weight-bold">Empleado que solicita</label>
+                            <p class="m-0">{{ solicitud.solicita_empleado_id.apellido_paterno }} {{ solicitud.solicita_empleado_id.apellido_materno }} {{ solicitud.solicita_empleado_id.nombres }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group shadow p-3 bg-white rounded height-cards">
+                            <label for="traslado" class="font-weight-bold">Traslado de tienda</label>
+                            <p class="m-0">{{ solicitud.tienda_origen_id.nombre }} - {{ solicitud.tienda_destino_id.nombre }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group shadow p-3 bg-white rounded height-cards">
+                            <label for="modelo" class="font-weight-bold">Modelo</label>
+                            <p class="m-0">{{ solicitud.producto_talla_id.producto_id.modelo_id.nombre }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group shadow p-3 bg-white rounded height-cards">
+                            <label for="categoria" class="font-weight-bold">Categoría</label>
+                            <p class="m-0">{{ solicitud.producto_talla_id.producto_id.categoria_id.nombre }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group shadow p-3 bg-white rounded height-cards">
+                            <label for="tipoCuero" class="font-weight-bold">Tipo de cuero</label>
+                            <p class="m-0">{{ solicitud.producto_talla_id.producto_id.tipo_cuero_id.nombre }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group shadow p-3 bg-white rounded height-cards">
+                            <label for="color" class="font-weight-bold">Color</label>
+                            <p class="m-0">{{ solicitud.producto_talla_id.producto_id.color_id.nombre }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group shadow p-3 bg-white rounded height-cards">
+                            <label for="talla" class="font-weight-bold">Talla</label>
+                            <p class="m-0">{{ solicitud.producto_talla_id.talla }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group shadow p-3 bg-white rounded height-cards">
+                            <label for="cantidad" class="font-weight-bold">Cantidad</label>
+                            <p class="m-0">{{ solicitud.cantidad }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center align-items-center">
+                <div class="row">
+                    <div class="col-md-12 form-group shadow p-3 bg-white rounded">
+                        <div class="contenedor-imagen-modelo">
+                            <img src="{{ url_imagen_server }}{{ solicitud.producto_talla_id.producto_id.modelo_id.imagen_url }}" class="imagen-modelo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer row">
+            <button type="submit" class="btn btn-info" (click)="saveForm()">Enviar</button>
+            <button type="button" class="btn btn-outline-danger" (click)="d('Cross click')">Salir</button>
+        </div>
+    </div>
+</ng-template>

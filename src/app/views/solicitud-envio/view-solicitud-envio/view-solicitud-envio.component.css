@@ -1,0 +1,16 @@
+.height-cards {
+    height: 100px;
+}
+
+.contenedor-imagen-modelo {
+    width: 400px;
+    height: 200px;
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.imagen-modelo {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}

@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class SocketService {
 
   socket: any;
-  // readonly url: string = 'ws://localhost:3000';
-  readonly url: string = 'https://codbar-api.herokuapp.com/';
+  readonly url: string = 'ws://localhost:3000';
+  // readonly url: string = 'https://codbar-api.herokuapp.com/';
 
   constructor() { this.socket = io(this.url); }
 

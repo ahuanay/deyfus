@@ -8,6 +8,9 @@ import { ModeloComponent } from './modelo/modelo.component';
 import { ProductoIngresoComponent } from './producto-ingreso/producto-ingreso.component';
 import { ProductoComponent } from './producto/producto.component';
 import { ProductoEgresoComponent } from './producto-egreso/producto-egreso.component';
+import { SolicitudEnvioComponent } from './solicitud-envio/solicitud-envio.component';
+import { SolicitudCompletadoComponent } from './solicitud-completado/solicitud-completado.component';
+import { IncidenciaEnvioComponent } from './incidencia-envio/incidencia-envio.component';
 
 const routes: Routes = [
     {
@@ -41,6 +44,18 @@ const routes: Routes = [
     {
         path: 'productos-egreso',
         component: ProductoEgresoComponent
+    },
+    {
+        path: 'solicitudes-envio',
+        component: SolicitudEnvioComponent
+    },
+    {
+        path: 'solicitudes-completado',
+        component: SolicitudCompletadoComponent
+    },
+    {
+        path: 'incidencias-envio',
+        component: IncidenciaEnvioComponent
     },
     {
         path: 'alertas',

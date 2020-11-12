@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { WebService } from './service/web.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 
@@ -14,13 +15,14 @@ import { FullComponent } from './layouts/full/full.component';
   declarations: [
     AppComponent,
     BlankComponent,
-    FullComponent
+    FullComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgbModule,
     ToastrModule.forRoot()
   ],
   providers: [WebService],

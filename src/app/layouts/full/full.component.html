@@ -33,12 +33,38 @@
                     <a class="dropdown-item" href="javascript:;" routerLink="/views/tipos-cuero">Tipos de Cuero</a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="ddEnvios" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"> Envios
+                </a>
+                <div class="dropdown-menu" aria-labelledby="ddEnvios">
+                    <a class="dropdown-item" href="javascript:;" routerLink="/views/solicitudes-envio">Solicitudes de envio</a>
+                    <a class="dropdown-item" href="javascript:;" routerLink="/views/solicitudes-completado">Solicitudes completados</a>
+                    <a class="dropdown-item" href="javascript:;" routerLink="/views/incidencias-envio">Incidencias de envio</a>
+                </div>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item" style="margin: 2px;">
-                <a class="btn btn-danger m-1" href="javascript:;" routerLink="/views/alertas">
+                <!-- <a class="btn btn-danger m-1" href="javascript:;" routerLink="/views/alertas">
                     <i class="fas fa-bell mr-2"></i> <span class="badge badge-light">0</span>
-                </a>
+                </a> -->
+                <ng-template #popTitle><b>Alertas</b></ng-template>
+                <ng-template #popContent>
+                    <div class="row pl-2 pr-2">
+                        <div class="d-flex align-items-center bg-danger border border-danger shadow rounded p-3 mb-2" (click)="evento(1)" style="cursor: pointer;">
+                            <div class="border border-danger rounded-circle bg-white text-center p-1 mr-3" style="width: 30px; height: 30px;">SE</div>
+                            <div class="text-white">Hay una nueva solicitud de envio</div>
+                        </div>
+                        <div class="d-flex align-items-center bg-danger border border-danger shadow rounded p-3" (click)="evento(2)" style="cursor: pointer;">
+                            <div class="border border-danger rounded-circle bg-white text-center p-1 mr-3" style="width: 30px; height: 30px;">SE</div>
+                            <div class="text-white">Hay una nueva solicitud de envio</div>
+                        </div>
+                    </div>
+                </ng-template>
+                <button type="button" class="btn btn-danger" [ngbPopover]="popContent" [autoClose]="'inside'">
+                    <i class="fas fa-bell mr-2"></i> <span class="badge badge-light">0</span>
+                </button>
             </li>
             <li class="nav-item" style="margin: 6px;">
                 <select class="form-control" (change)="changeTienda($event)">

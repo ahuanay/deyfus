@@ -38,6 +38,11 @@ export class FullComponent implements OnInit {
     )
   }
 
+  evento(e: any){
+    console.log(e);
+    
+  }
+
   changeTienda(e: any) {
     localStorage.setItem('tienda_id', e.target.value);
   }

@@ -8,7 +8,7 @@ import { ListProductoComponent } from './list-producto/list-producto.component';
 import { CreateProductoComponent } from './create-producto/create-producto.component';
 import { DeleteProductoComponent } from './delete-producto/delete-producto.component';
 import { FilterPipe } from './filter/filter.pipe';
-import { ProductoEgresoModule } from '../producto-egreso/producto-egreso.module';
+import { SolicitudEnvioModule } from '../solicitud-envio/solicitud-envio.module';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,8 @@ import { ProductoEgresoModule } from '../producto-egreso/producto-egreso.module'
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    ProductoEgresoModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    SolicitudEnvioModule
   ],
   exports: [
     ProductoComponent

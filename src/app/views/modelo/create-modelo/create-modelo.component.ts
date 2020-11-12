@@ -23,6 +23,7 @@ export class CreateModeloComponent implements OnInit {
 
   public uploadedFile: File;
   public url: string;
+  public url_imagen_server: String;
 
   get validatorForm() { return this.formModelo.controls; }
 
@@ -42,6 +43,7 @@ export class CreateModeloComponent implements OnInit {
   }
 
   inicializator() {
+    this.url_imagen_server = this.webService.url_imagen_server;
     this.uploadedFile = null;
     this.url = null;
     this.inicializatorModeloForm();
@@ -63,7 +65,7 @@ export class CreateModeloComponent implements OnInit {
     this.webService.getByIdModelo(this.id).subscribe(
       response => {
         this.formModelo.get('nombre').setValue(response.nombre);
-        this.url = 'http://codbar-api.herokuapp.com/' + response.imagen_url;
+        this.url = this.url_imagen_server + response.imagen_url;
         this.formModelo.get('imagen_url').clearValidators();
         this.formModelo.get('imagen_url').updateValueAndValidity();
         this.formModelo.get('estado').setValue(response.estado);      

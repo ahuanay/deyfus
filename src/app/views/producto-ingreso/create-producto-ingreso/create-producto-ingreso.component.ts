@@ -32,6 +32,7 @@ export class CreateProductoIngresoComponent implements OnInit {
   public listTallas: any;
   public imagen_url: any;
   public readonlyPrecio: Boolean;
+  public url_imagen_server: String;
 
   get validatorForm() { return this.formProductoIngreso.controls; }
   get formTallas() { return this.formProductoIngreso.get('tallas') as FormArray; }
@@ -52,6 +53,7 @@ export class CreateProductoIngresoComponent implements OnInit {
   }
 
   inicializator() {
+    this.url_imagen_server = this.webService.url_imagen_server;
     this.listModelos = [];
     this.listCategorias = [];
     this.listTiposCuero = [];
@@ -69,7 +71,7 @@ export class CreateProductoIngresoComponent implements OnInit {
     if (this.id !== '') {
       this.inicializatorByIdProductoIngreso();
     }
-    
+
   }
 
   inicializatorProductoIngresoForm() {
@@ -87,7 +89,7 @@ export class CreateProductoIngresoComponent implements OnInit {
     // this.webService.getByIdProductoIngreso(this.id).subscribe(
     //   response => {
     //     this.formProductoIngreso.get('nombre').setValue(response.nombre);
-    //     this.formProductoIngreso.get('estado').setValue(response.estado);      
+    //     this.formProductoIngreso.get('estado').setValue(response.estado);
     //   },
     //   error => {
     //     console.log(error);

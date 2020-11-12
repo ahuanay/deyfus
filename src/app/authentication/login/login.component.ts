@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
   inicializator() {
     // document.body.classList.add('body-login');
     this.validatorFormStatus = false;
-    this.inicializatorEmpleadoForm();
+    this.inicializatorForm();
   }
 
-  inicializatorEmpleadoForm() {
+  inicializatorForm() {
     this.formLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -48,12 +48,12 @@ export class LoginComponent implements OnInit {
   saveForm() {
     this.webService.postLogin(this.formLogin.value).subscribe(
       response => {
-        localStorage.setItem('usuario', JSON.stringify(response));
+        sessionStorage.setItem('_token', JSON.stringify(response.data));
         this.router.navigate(['/dashboard/home']);
         this.spinnerService.hide();
       },
       error => {
-        this.mmsToastrService(error.error.error, '!Error¡', 'error');
+        this.mmsToastrService(error.errors, '!Error¡', 'error');
         this.spinnerService.hide();
       }
     );

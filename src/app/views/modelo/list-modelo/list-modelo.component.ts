@@ -12,6 +12,7 @@ export class ListModeloComponent implements OnInit {
   
   public listModelos: any;
   public filterModelo: any;
+  public url_imagen_server: String;
 
   constructor(private webService: WebService, private socketService: SocketService, private spinnerService: NgxSpinnerService) { }
 
@@ -21,6 +22,7 @@ export class ListModeloComponent implements OnInit {
 
   inicializator() {
     this.spinnerService.show();
+    this.url_imagen_server = this.webService.url_imagen_server;
     this.listModelos = [];
     this.filterModelo = '';
     this.listModelosQuery();
